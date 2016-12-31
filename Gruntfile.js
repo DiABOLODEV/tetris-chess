@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-typescript');
+  grunt.loadNpmTasks('grunt-min');
+  grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-contrib-connect');
@@ -9,10 +11,16 @@ module.exports = function(grunt) {
     typescript: {
       app: {
         src: ['app/scripts/Game.ts'],
-        dest: 'build/js/main.js',
+        dest: 'build/js/game.js',
         options: {
           sourceMap: true
         }
+      }
+    },
+    min: {
+      js: {
+        src: 'build/js/game.js',
+        dest: 'build/js/game.min.js'
       }
     },
     copy: {
@@ -37,8 +45,10 @@ module.exports = function(grunt) {
     },
     open: {
       app: {
-        path: 'http://localhost:8080'
-        
+        path: 'http://localhost:8080',
+        options: {
+          openOn: 'serverListening'
+        }
       }
     },
     connect: {
@@ -54,7 +64,7 @@ module.exports = function(grunt) {
     watch: {
       app: {
         files: 'app/**/*',
-        tasks: ['typescript', 'copy'],
+        tasks: ['typescript', 'copy', 'min'],
         options: {
           livereload: true
         }
@@ -62,5 +72,15 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['typescript', 'copy', 'open', 'connect', 'watch']);
+  grunt.registerTask('default', ['typescript', 'copy', 'min', 'open', 'connect', 'watch']);
+  grunt.registerTask('server', function () {
+    var server = require('myServer');
+    server.listen(3000, function (err) {
+      if (!err) {
+        grunt.log.writeln('Server started');
+        grunt.event.emit('serverListening'); // triggers open:delayed
+      }
+    });
+  });
+
 }
