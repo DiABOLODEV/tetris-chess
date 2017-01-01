@@ -1,5 +1,6 @@
 /// <reference path='../Model/game.interface.ts'/>
 /// <reference path='../Collection/pieces.collection.ts'/>
+/// <reference path='../Collection/boards.collection.ts'/>
 module Chess.GamePlay {
     export class Game implements GameInterface{
         NB_PIECES : number = 3;
@@ -8,25 +9,38 @@ module Chess.GamePlay {
         _p2 : PlayerInGame;
 
         constructor(board : Board, p1 : PlayerInGame, p2 :PlayerInGame){
-            this._board = board;
-
+            // si aucun plateau n'est spécifié on en tire un au hasard
+            if(board == null){
+              this._board = this.getRandomBoard();
+            }
+            else{
+              this._board = board;
+            }
             this._p1 = p1;
-            this._p1.setPieces(this.getPieces(this.NB_PIECES)); // récupére
+            this._p1.setPieces(this.getRandomPieces(this.NB_PIECES)); // récupére
             this._p1.setCoord(this._board.getPlayerCoord(1));
 
             this._p2 = p2;
-            this._p2.setPieces(this.getPieces(this.NB_PIECES)); // récupére
+            this._p2.setPieces(this.getRandomPieces(this.NB_PIECES)); // récupére
             this._p2.setCoord(this._board.getPlayerCoord(2));
 
         }
 
 
-        getPieces(n : number) : Array<Piece>{
+        getRandomPieces(n : number) : Array<Piece>{
             var pieces : Array<Piece> = [];
             for(var i = 0; i < n ; i ++){
-                 pieces.push(PIECES[Math.floor((PIECES.length-1)*Math.random())]);
+                 pieces.push(this.getRandomPiece());
             }
             return pieces;
+        }
+
+        getRandomBoard() : Board{
+          return BOARDS[Math.floor((BOARDS.length)*Math.random())];
+        }
+
+        getRandomPiece(): Piece{
+          return PIECES[Math.floor((PIECES.length)*Math.random())];
         }
 
         playIsValid(player: PlayerInGame) : boolean{
@@ -75,8 +89,12 @@ module Chess.GamePlay {
             var lastPieceCoord : Coord = piece.getCoords(r)[piece.getCoords(r).length-1]; // on prend la derniére position de la piéce
 
             player.setCoord(this.addCoords(playerCoord,lastPieceCoord));
+            // on attribut une nouvelle piéce au joueurs
+            player.replacePiece(player.getIndexPieceSelected(), this.getRandomPiece());
+            // on remet ses attributs à 0
             player.setIndexPieceSelected(null);
             player.setPivotPieceSelected(0);
+
 
             if (this.gameIsFinish()){
                 player.win();
@@ -116,7 +134,7 @@ module Chess.GamePlay {
                 relativeCoords.push(this.addCoords(pieceCoord, player.getCoord()));
             }
 
-            return new Piece(piece.name, relativeCoords);
+            return new Piece(piece.name, piece.color, relativeCoords);
         }
 
         getP1(): PlayerInGame{

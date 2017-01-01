@@ -17,6 +17,9 @@ module Chess.GamePlay {
             getPieces() : Array<Piece>{
                 return this._pieces;
             }
+            replacePiece(i:number, piece:Piece){
+              this._pieces[i] = piece;
+            }
             getPieceCoordsSelected(): Array<Coord>{
               return this._pieces[this._indexPieceSelected].getCoords(this._pivotPieceSelected);
             }

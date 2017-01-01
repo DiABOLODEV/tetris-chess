@@ -3,10 +3,12 @@ module Chess.GamePlay {
     export class Piece implements PieceInterface {
 
         name: string;
+        color;
         _coords: Array<Coord>;
 
-         constructor(name : string, coords : Array<Coord>) {
+         constructor(name : string, color, coords : Array<Coord>) {
             this.name = name;
+            this.color = color;
             this._coords = coords;
         }
 

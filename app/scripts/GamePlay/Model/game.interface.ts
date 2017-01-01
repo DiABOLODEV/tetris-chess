@@ -14,7 +14,12 @@ module Chess.GamePlay {
         _board : Board;
         _p1 : PlayerInGame;
         _p2 : PlayerInGame;
-        getPieces(n : number) : Array<Piece>;
+        /* n Pièces aléatoire */
+        getRandomPieces(n : number) : Array<Piece>;
+        /* Piéce aléatoire */
+        getRandomPiece(): Piece;
+        /* Plateau aléatoire */
+        getRandomBoard() : Board;
         getAdversaire(player: PlayerInGame);
         playIsValid(player: PlayerInGame) : boolean;
         getRelativePiece(piece : Piece, r:number, player : PlayerInGame) :  Piece;

@@ -13,6 +13,7 @@ module Chess.GamePlay {
             win() : void;
             getCoord() : Coord;
             getPieces() : Array<Piece>;
+            replacePiece(i:number, piece:Piece);
             getPieceCoordSelected(): Array<Coord>;
             getIndexPieceSelected() : number;
             setIndexPieceSelected(i : number);

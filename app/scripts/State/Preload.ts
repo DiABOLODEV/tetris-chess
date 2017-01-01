@@ -3,12 +3,7 @@ module Chess.State {
     private preloadBar: Phaser.Sprite;
 
     preload() {
-      // this.preloadBar = this.add.sprite(0, 148, 'preload-bar');
-      // this.load.setPreloadSprite(this.preloadBar);
-
-      //this.load.image('menu-background', 'assets/images/menu-background.png');
-      
-      // Load remaining assets here
+      this.game.load.image('cell', './assets/cell.png');
     }
 
     create() {

@@ -3,6 +3,7 @@ module Chess.GamePlay {
     export interface PieceInterface {
 
         name: string;
+        color;
         _coords: Array<Coord>;
         getCoords(r : number) : Array<Coord>;
         setCoords(coords : Array<Coord>): void;
