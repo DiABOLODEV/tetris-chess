@@ -72,7 +72,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['typescript', 'copy', 'min', 'open', 'connect', 'watch']);
+  grunt.registerTask('default', ['typescript', 'copy', 'min', 'open', 'connect']);
   grunt.registerTask('server', function () {
     var server = require('myServer');
     server.listen(3000, function (err) {

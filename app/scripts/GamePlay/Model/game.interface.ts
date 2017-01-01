@@ -16,13 +16,13 @@ module Chess.GamePlay {
         _p2 : PlayerInGame;
         getPieces(n : number) : Array<Piece>;
         getAdversaire(player: PlayerInGame);
-        playIsValid(piece: Piece, player: PlayerInGame) : boolean;
-        getRelativePiece(piece : Piece, player : PlayerInGame) :  Piece;
+        playIsValid(player: PlayerInGame) : boolean;
+        getRelativePiece(piece : Piece, r:number, player : PlayerInGame) :  Piece;
         addCoords(c1:Coord, c2:Coord) : Coord;
-        play(piece: Piece, player: PlayerInGame)  : void;
+        play(player: PlayerInGame)  : void;
         getP1(): PlayerInGame;
         getP2(): PlayerInGame;
-        
+
         getBoard(): Board;
     }
 }

@@ -6,8 +6,9 @@ module Chess.State {
 
     create() {
       // Assign global settings here
-      
+
       this.game.state.start('preload');
+
     }
   }
 }

@@ -4,7 +4,9 @@ module Chess.GamePlay {
             _coord : Coord;
             _win : boolean;
             _pieces : Array<Piece>;
-        
+            _indexPieceSelected : number;
+            _pivotPieceSelected : number;
+
             constructor(name){
                 this.name = name;
                 this._win = false;
@@ -14,6 +16,30 @@ module Chess.GamePlay {
             }
             getPieces() : Array<Piece>{
                 return this._pieces;
+            }
+            getPieceCoordsSelected(): Array<Coord>{
+              return this._pieces[this._indexPieceSelected].getCoords(this._pivotPieceSelected);
+            }
+            getIndexPieceSelected() : number{
+              return this._indexPieceSelected;
+            }
+            setIndexPieceSelected(i : number){
+              this._indexPieceSelected = i;
+            }
+            getPivotPieceSelected(){
+              return this._pivotPieceSelected;
+            }
+            setPivotPieceSelected(r : number){
+              this._pivotPieceSelected = r;
+            }
+            incPivotPieceSelected(){
+              if(this._pivotPieceSelected == null || this._pivotPieceSelected == 3){
+                this._pivotPieceSelected = 0;
+              }
+              else{
+                this._pivotPieceSelected++;
+              }
+
             }
             isWin() : boolean{
                 return this._win;
@@ -27,6 +53,6 @@ module Chess.GamePlay {
             setCoord(coord: Coord){
                 this._coord = coord;
             }
-            
+
     }
 }

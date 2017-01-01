@@ -16,9 +16,7 @@
 module Chess {
   export class Game extends Phaser.Game {
     constructor() {
-      super(1500, 800, Phaser.AUTO, 'game-div');
-      
-
+      super(640, 960, Phaser.AUTO, 'game-div');
 
       this.state.add('boot', State.Boot);
       this.state.add('preload', State.Preload);

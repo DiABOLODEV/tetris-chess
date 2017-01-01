@@ -7,9 +7,18 @@ module Chess.GamePlay {
             _coord : Coord;
             _pieces : Array<Piece>;
             _win : boolean;
+            _indexPieceSelected : ?number;
+            _pivotPieceSelected : ?number;
             isWin() : boolean;
             win() : void;
             getCoord() : Coord;
             getPieces() : Array<Piece>;
+            getPieceCoordSelected(): Array<Coord>;
+            getIndexPieceSelected() : number;
+            setIndexPieceSelected(i : number);
+            getPivotPieceSelected(): number;
+            setPivotPieceSelected(r : number);
+            incPivotPieceSelected();
+
     }
 }
