@@ -96,9 +96,9 @@ module Chess.State {
 
       // Timelines
       this._g_timeline_p1 = this.game.add.graphics(0,0);
-      this.drawTimelineP1(); // on différencie car l'autre va dans le x negatif
+      //TODO temps this.drawTimelineP1(); // on différencie car l'autre va dans le x negatif
       this._g_timeline_p2 = this.game.add.graphics(0,0);
-      this.drawTimelineP2();
+      //TODO temps this.drawTimelineP2();
 
       // UI pour les joueurs
       this._g_bt_j1 = this.game.add.graphics(this.positions.cell.size, this.positions.board.y-this.positions.cell.size-this.positions.cell.size/2);

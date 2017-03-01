@@ -4,9 +4,11 @@
 module Chess.GamePlay {
     export class Game implements GameInterface{
         NB_PIECES : number = 3;
+        TIME : number = 30; // secondes
         _board : Board;
         _p1 : PlayerInGame;
         _p2 : PlayerInGame;
+        _time: number ;
 
         constructor(board : Board, p1 : PlayerInGame, p2 :PlayerInGame){
             // si aucun plateau n'est spécifié on en tire un au hasard
