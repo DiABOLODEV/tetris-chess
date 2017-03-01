@@ -9,6 +9,7 @@ module Chess.GamePlay {
         _p1 : PlayerInGame;
         _p2 : PlayerInGame;
         _time: number ;
+        _turn : PlayerInGame;
 
         constructor(board : Board, p1 : PlayerInGame, p2 :PlayerInGame){
             // si aucun plateau n'est spécifié on en tire un au hasard
@@ -25,6 +26,8 @@ module Chess.GamePlay {
             this._p2 = p2;
             this._p2.setPieces(this.getRandomPieces(this.NB_PIECES)); // récupére
             this._p2.setCoord(this._board.getPlayerCoord(2));
+
+            this._turn = this._p1;
 
         }
 
@@ -97,13 +100,17 @@ module Chess.GamePlay {
             player.setIndexPieceSelected(null);
             player.setPivotPieceSelected(0);
 
+            // On change de joueur
+            this._changeTurn();
 
             if (this.gameIsFinish()){
                 player.win();
             }
 
+        }
 
-
+        _changeTurn(){
+          this._turn = this.getAdversaire(this._turn);
         }
 
         getAdversaire(player: PlayerInGame){
@@ -145,6 +152,10 @@ module Chess.GamePlay {
 
         getP2(): PlayerInGame{
             return this._p2;
+        }
+
+        getTurn(): PlayerInGame{
+          return this._turn;
         }
     }
 }

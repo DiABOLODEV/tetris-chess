@@ -50,7 +50,7 @@ module Chess.State {
         }
       }
       // le gameplay
-      this._game = new GamePlay.Game(null, new GamePlay.PlayerInGame('titi'), new GamePlay.PlayerInGame('ika'));
+      this._game = new GamePlay.Game(null, new GamePlay.PlayerInGame('vert'), new GamePlay.PlayerInGame('rouge'));
 
       // les fonds
 
@@ -130,9 +130,6 @@ module Chess.State {
 
       this.drawPiecesP2();
 
-
-
-
     }
 
     onPlay(g,p, graphic, bt, player){
@@ -150,9 +147,9 @@ module Chess.State {
         // on desactive le bouton
         this.drawPlayButton(bt, false);
         // on redessine ses pieces
-
         if(player.isWin()){
-          alert(player.name + ' gagne !');
+          //this.game.state.start('end');
+          alert('Les '+player.name + ' gagne !');
         }
       }
       else{
@@ -163,6 +160,10 @@ module Chess.State {
 
     }
     onClickPiece(g,p,index, graphic, bt, player){
+
+      // Seulement si c'est son tour
+      if(this._game.getTurn() != player) return;
+
       // gestion de la piece selectionné et la rotation globale
       // on réutilise le vars pour afficher le piece / jouer
       if(index == player.getIndexPieceSelected()){
@@ -172,8 +173,7 @@ module Chess.State {
         player.setPivotPieceSelected(0);
       }
 
-
-      this.showPieceOnBoard(player, bt);
+        this.showPieceOnBoard(player, bt);
     }
     showPieceOnBoard(player, bt){
 

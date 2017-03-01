@@ -4,6 +4,7 @@
 /// <reference path='State/Preload.ts'/>
 /// <reference path='State/Menu.ts'/>
 /// <reference path='State/Main.ts'/>
+/// <reference path='State/End.ts'/>
 /// <reference path='GamePlay/Model/coord.model.ts'/>
 /// <reference path='GamePlay/Model/board.model.ts'/>
 /// <reference path='GamePlay/Model/piece.model.ts'/>
@@ -22,6 +23,7 @@ module Chess {
       this.state.add('preload', State.Preload);
       this.state.add('menu', State.Menu);
       this.state.add('main', State.Main);
+      this.state.add('end', State.End);
 
       this.state.start('boot');
     }

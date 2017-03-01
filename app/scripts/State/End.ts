@@ -1,5 +1,5 @@
 module Chess.State {
-  export class End extends Phaser.State {
+  export class Menu extends Phaser.State {
     background: Phaser.Sprite;
 
     create() {
